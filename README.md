@@ -104,29 +104,54 @@ controller/  →  service/  →  repository/  →  entity/
 Business logic lives in the **service** layer. Controllers only receive requests,
 validate input, call services, and return responses.
 
+### Directory Structure
 
 sit-internship-management-team-XX/
+│
 ├── src/
-│   └── main/
-│       ├── java/com/tu/varna/internship/
-│       │   ├── config/          # Security, CORS, Swagger config
-│       │   ├── controller/      # REST endpoints (request/response handling)
-│       │   ├── service/         # Business logic layer
-│       │   ├── repository/      # JPA repositories (data access)
-│       │   ├── entity/          # Database entities
-│       │   ├── dto/             # Data Transfer Objects
-│       │   ├── mapper/          # Entity ↔ DTO mapping
-│       │   ├── exception/       # Custom exceptions & handlers
-│       │   └── util/            # Helper classes
-│       └── resources/
-│           ├── application.properties
-│           └── application-local.properties (gitignored)
-├── frontend/                    # React application (separate project)
-├── docs/                        # Documentation
-│   ├── Internship_Project_Brief.pdf
-│   └── ARCHITECTURE.md
-├── CONTRIBUTIONS.md             # Individual contributions
-└── README.md
+│ └── main/
+│ ├── java/
+│ │ └── com/tu/varna/internship/
+│ │ ├── config/ # Security, CORS, Swagger configuration
+│ │ ├── controller/ # REST API endpoints (request/response handling)
+│ │ ├── service/ # Business logic layer
+│ │ ├── repository/ # JPA repositories (data access layer)
+│ │ ├── entity/ # Database entities (JPA models)
+│ │ ├── dto/ # Data Transfer Objects (API contracts)
+│ │ ├── mapper/ # Entity ↔ DTO mapping
+│ │ ├── exception/ # Custom exceptions & global handlers
+│ │ └── util/ # Helper classes & utilities
+│ └── resources/
+│ ├── application.properties # Default configuration
+│ └── application-local.properties # Local config (gitignored)
+│
+├── frontend/ # React application (separate project)
+│ ├── src/
+│ ├── public/
+│ └── package.json
+│
+├── docs/ # Documentation
+│ ├── Internship_Project_Brief.pdf
+│ └── ARCHITECTURE.md
+│
+├── CONTRIBUTIONS.md # Individual contributions
+└── README.md # This file
+
+### Layer Descriptions
+
+| Layer | Package | Purpose |
+|-------|---------|---------|
+| **Configuration** | `config/` | Spring Security setup, CORS policies, Swagger/OpenAPI configuration |
+| **Controller** | `controller/` | Handle HTTP requests, validate input, return responses (no business logic) |
+| **Service** | `service/` | Business logic, transactions, security enforcement, orchestration |
+| **Repository** | `repository/` | Database operations via Spring Data JPA, custom queries |
+| **Entity** | `entity/` | JPA entities mapping to database tables (User, Offer, Application, etc.) |
+| **DTO** | `dto/` | Data Transfer Objects for API requests and responses |
+| **Mapper** | `mapper/` | Convert between Entity and DTO objects |
+| **Exception** | `exception/` | Custom exceptions and global exception handling (`@ControllerAdvice`) |
+| **Utility** | `util/` | Helper methods, validators, and reusable utilities |
+
+> **Key Principle:** Business logic lives exclusively in the **service** layer. Controllers only receive requests, validate input, call services, and return responses. Repositories only handle database operations. This separation of concerns ensures maintainable, testable code.
 
 ---
 
