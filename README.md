@@ -11,16 +11,32 @@ consumes the REST API.
 
 ---
 
+## Table of Contents
+
+- [Team & Responsibilities](#team--responsibilities)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Project Structure](#project-structure)
+- [Backend Setup](#backend-setup-do-this-once)
+- [API Documentation](#api-documentation)
+- [Frontend](#frontend-react)
+- [Roadmap](#roadmap-3-weeks--from-the-project-brief)
+- [How We Work with Git](#how-we-work-with-git)
+- [Roles & Access](#roles--access)
+- [Known Limitations & Optional Features](#known-limitations--optional-features)
+- [Verifying It Works](#verifying-it-works)
+
+
 ## Team & responsibilities
 
 | Member | GitHub | Modules / responsibility |
 |---|---|---|
-| _Name (lead)_ | @_handle_ | **Application** feature, **React frontend**, shared security & exception handling |
-| _Name_ | @_handle_ | **Internship offer** feature |
-| _Name_ | @_handle_ | **Company** feature + **Admin/statistics** |
+| _Yomer Hakan(lead)_ | @_handle_ | **Application** feature, **React frontend**, shared security & exception handling |
+| _Gamze_ | @_handle_ | **Internship offer** feature |
+| _Zeynep_ | @_handle_ | **Company** feature + **Admin/statistics** |
 
-> Each member also keeps a short statement in [CONTRIBUTIONS.md](CONTRIBUTIONS.md)
-> describing their modules, key commits, and technical decisions (required by the brief, §10).
+> Each member also keeps a short statement in [CONTRIBUTIONS.md](CONTRIBUTIONS.md) detailing  their modules, key commits, and technical decisions (required by the brief).
 
 ---
 
@@ -40,6 +56,31 @@ consumes the REST API.
 
 ---
 
+## Features
+
+### For Students
+- Create and manage student profile
+- Browse and search internship offers
+- Apply to offers (one application per offer)
+- Track application status in real-time
+- View application history
+
+### For Companies
+- Register and manage company profile
+- Create, edit, and close internship offers
+- Review student applications
+- Update application status (Pending → Review → Accepted/Rejected)
+- View offer analytics and applicant metrics
+
+### For Administrators
+- Manage companies (approve, suspend, delete)
+- Manage users
+- Oversee all internship offers
+- View platform statistics
+- System monitoring and audit
+
+---
+
 ## Prerequisites
 
 Each teammate needs, once:
@@ -49,6 +90,43 @@ Each teammate needs, once:
   set the `postgres` password to `postgres`, keep port `5432`
 - **IntelliJ IDEA**
 - **Node.js 18+** (only for the React frontend)
+
+---
+
+## Project Structure
+
+Full guide: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**. Layered design:
+
+```
+controller/  →  service/  →  repository/  →  entity/
+        (DTOs in/out)            (database tables, auto-generated)
+```
+Business logic lives in the **service** layer. Controllers only receive requests,
+validate input, call services, and return responses.
+
+
+sit-internship-management-team-XX/
+├── src/
+│   └── main/
+│       ├── java/com/tu/varna/internship/
+│       │   ├── config/          # Security, CORS, Swagger config
+│       │   ├── controller/      # REST endpoints (request/response handling)
+│       │   ├── service/         # Business logic layer
+│       │   ├── repository/      # JPA repositories (data access)
+│       │   ├── entity/          # Database entities
+│       │   ├── dto/             # Data Transfer Objects
+│       │   ├── mapper/          # Entity ↔ DTO mapping
+│       │   ├── exception/       # Custom exceptions & handlers
+│       │   └── util/            # Helper classes
+│       └── resources/
+│           ├── application.properties
+│           └── application-local.properties (gitignored)
+├── frontend/                    # React application (separate project)
+├── docs/                        # Documentation
+│   ├── Internship_Project_Brief.pdf
+│   └── ARCHITECTURE.md
+├── CONTRIBUTIONS.md             # Individual contributions
+└── README.md
 
 ---
 
@@ -108,19 +186,6 @@ dev server (e.g. http://localhost:5173) and talks to the backend at http://local
 
 ---
 
-## Project structure
-
-Full guide: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**. Layered design:
-
-```
-controller/  →  service/  →  repository/  →  entity/
-        (DTOs in/out)            (database tables, auto-generated)
-```
-Business logic lives in the **service** layer. Controllers only receive requests,
-validate input, call services, and return responses.
-
----
-
 ## Roadmap (3 weeks — from the project brief)
 
 | Week | Deliverable |
@@ -171,8 +236,7 @@ git push -u origin feature/company
 
 - [ ] _List anything not finished here_
 - [ ] Optional (bonus) features implemented: CV upload, email notifications, JWT,
-      pagination/sorting, audit log, Docker Compose, automated tests — _tick what you do_
-
+      pagination/sorting, audit log, Docker Compose, automated tests
 ---
 
 ## Verifying it works
