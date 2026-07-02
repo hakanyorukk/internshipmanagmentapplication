@@ -28,6 +28,12 @@
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
         <!-- JPA + Hibernate for the database layer -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
